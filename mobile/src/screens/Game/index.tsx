@@ -27,7 +27,7 @@ export function Game() {
   }
 
   useEffect(() => {
-    fetch(`http://192.168.0.10:3333/games/${game.id}/ads`)
+    fetch(`http://192.168.0.63:3333/games/${game.id}/ads`)
     .then(res => res.json())
     .then(data => setDuos(data))
   },[])
@@ -52,15 +52,20 @@ export function Game() {
                 <View style={styles.right}/>
 
             </View>
+
             <Image
             source={{uri: game.bannerUrl}}
             style={styles.cover}
             resizeMode="cover"
             />
+            
             <Heading 
               title={game.title}
               subtitle="Conecte-se e comece a jogar!"
             />
+            
+
+
             <FlatList 
               horizontal
               data={duos}
