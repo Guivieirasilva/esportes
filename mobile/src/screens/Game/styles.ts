@@ -24,10 +24,10 @@ export const styles = StyleSheet.create({
   },
   cover:{
     width: 311,
-    height: 140,
+    height: 190,
     borderRadius: 8,
-    marginTop: 30,
-    marginBottom: 12,
+    marginTop: 18,
+    marginBottom: 10,
     },
     containerList:{
       width: "100%"
@@ -46,5 +46,5 @@ export const styles = StyleSheet.create({
       flex: 1, 
       alignItems:"center",
       justifyContent: "center"
-    }
+    },
 });
