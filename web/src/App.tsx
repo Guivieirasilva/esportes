@@ -1,4 +1,5 @@
 import "./styles/main.css";
+import axios from "axios";
 
 import * as Dialog from "@radix-ui/react-dialog";
 
@@ -24,12 +25,11 @@ function App() {
   const [games, setGames] = useState<Game[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:3333/games")
-      .then((res) => res.json())
-      .then((data) => {
-        setGames(data);
-      });
+    axios("http://localhost:3333/games").then(response => {
+       setGames(response.data)
+     })
   }, []);
+
 
   return (
     <main className="max-w-[1344px] mx-auto flex flex-col items-center my-20">

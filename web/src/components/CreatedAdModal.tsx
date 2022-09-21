@@ -2,11 +2,13 @@ import { Check, GameController } from "phosphor-react";
 
 import { useEffect, useState, FormEvent } from "react";
 
-
 import * as Checkbox from "@radix-ui/react-checkbox";
 import * as ToggleGroup  from "@radix-ui/react-toggle-group";
 import * as Dialog from "@radix-ui/react-dialog";
+
 import { Input } from "./Form/Input";
+
+import axios from "axios";
 
 interface Game {
    id: string;
@@ -19,26 +21,39 @@ export function CreatedAdModal(){
   const [useVoiceChannel, setUseVoiceChannel] = useState(false)
 
 
-   useEffect(() => {
-      fetch("http://localhost:3333/games")
-        .then((res) => res.json())
-        .then((data) => {
-          setGames(data);
-        });
-    }, []);
+  useEffect(() => {
+   axios("http://localhost:3333/games").then(response => {
+       setGames(response.data)
+     })
+ }, []);
 
-    function handleCreatedAd(event:FormEvent){
-         event.preventDefault()
+   async function handleCreatedAd(event:FormEvent){
+         event.preventDefault();
 
          const formData = new FormData(event.target as HTMLFormElement)
          const data = Object.fromEntries(formData)
 
-         console.log(data);
-         console.log(weekDays);
-         console.log(useVoiceChannel);
-         
-         
-         
+         if(!data.name){
+            return;
+         }
+
+         try{
+            await axios.post(`http://localhost:3333/games/${data.game}/ads`,{
+               name: data.name,
+               yearsPlaying: Number(data.yearsPlaying),
+               discord: data.discord,
+               weekDays: weekDays.map(Number),
+               hourStart: data.hourStart,
+               hoursEnd: data.hoursEnd  ,
+               useVoiceChannel: useVoiceChannel,
+            })
+
+            alert('Anúncio criado com sucesso')
+            console.log("Anúncio Enviado")
+         } catch (error) {
+            console.log(error)
+            alert('Erro ao criar o anúncio')  
+         }
     }
 
    return(
