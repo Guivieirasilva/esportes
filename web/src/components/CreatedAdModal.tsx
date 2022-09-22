@@ -27,34 +27,33 @@ export function CreatedAdModal(){
      })
  }, []);
 
-   async function handleCreatedAd(event:FormEvent){
-         event.preventDefault();
+   async function handleCreateAd(event: FormEvent) {
+      event.preventDefault()
 
-         const formData = new FormData(event.target as HTMLFormElement)
-         const data = Object.fromEntries(formData)
+      const formData = new FormData(event.target as HTMLFormElement);
+      const data = Object.fromEntries(formData);
 
-         if(!data.name){
-            return;
-         }
+      if (!data.name) {
+         return;
+      }
 
-         try{
-            await axios.post(`http://localhost:3333/games/${data.game}/ads`,{
-               name: data.name,
-               yearsPlaying: Number(data.yearsPlaying),
-               discord: data.discord,
-               weekDays: weekDays.map(Number),
-               hourStart: data.hourStart,
-               hoursEnd: data.hoursEnd  ,
-               useVoiceChannel: useVoiceChannel,
-            })
+      try {
+         const response = await axios.post(`http://localhost:3333/games/${data.game}/ads`, {
+            name: data.name,
+            yearsPlaying: Number(data.yearsPlaying),
+            discord: data.discord,
+            weekDays: weekDays.map(Number),
+            hourStart: data.hourStart,
+            hourEnd: data.hourEnd,
+            useVoiceChannel: useVoiceChannel,
+         });
 
-            alert('Anúncio criado com sucesso')
-            console.log("Anúncio Enviado")
-         } catch (error) {
-            console.log(error)
-            alert('Erro ao criar o anúncio')  
-         }
-    }
+         alert('Anúncio criado com sucesso!');
+      } catch (err) {
+         console.log(err);
+         alert('Erro ao criar anúncio!');
+      }
+   }
 
    return(
       <Dialog.Portal>
@@ -64,7 +63,7 @@ export function CreatedAdModal(){
               Publique um anúncio
             </Dialog.Title>
           
-              <form onSubmit={handleCreatedAd} className="mt-8 flex flex-col gap-4">
+              <form onSubmit={handleCreateAd} className="mt-8 flex flex-col gap-4">
                 <div className="flex flex-col gap-2">
                   <label className="font-semibold" htmlFor="game">Qual o game?</label>
                   <select 
