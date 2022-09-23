@@ -5,6 +5,10 @@ module.exports = {
     './index.html'
   ],
   theme: {
+    screens:{
+      tablet: '640px',
+      mobile: '420px'
+    },
     extend: {
       fontFamily:{
         sans: ['Inter', 'sans-serif']
