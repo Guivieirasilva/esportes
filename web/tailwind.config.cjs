@@ -5,9 +5,19 @@ module.exports = {
     './index.html'
   ],
   theme: {
-    screens:{
-      tablet: '640px',
-      mobile: '420px'
+    screens: {
+      'xl': {'max': '1220px'},
+      // => @media (max-width: 1279px) { ... }
+
+      'lg': {'max': '1023px'},
+      // => @media (max-width: 1023px) { ... }
+
+      'md': {'max': '950px'},
+      // => @media (max-width: 767px) { ... }
+
+      'sm': {'max': '720px'},
+      // => @media (max-width: 639px) { ... }
+      'xs': {'max': '500px'}
     },
     extend: {
       fontFamily:{

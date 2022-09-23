@@ -32,16 +32,16 @@ function App() {
 
 
   return (
-    <main className="max-w-[1344px] mx-auto flex flex-col items-center my-20">
+    <main className="max-w-[1200px] mx-auto flex flex-col items-center my-20 xl:w-[970px] lg:w-[700px] sm:w-[520px] xs:w-[300px]  ">
       <img src={LogoImg} alt="Logo da NLW edição eSports" />
-      <h1 className="text-6xl text-white font-black mt-20">
+      <h1 className="text-6xl text-white font-black mt-20 sm:text-5xl ">
         Seu{" "}
-        <span className="text-transparent bg-clip-text bg-nlw-gradient">
+        <span className="text-transparent bg-clip-text bg-nlw-gradient ">
           duo
         </span>{" "}
         está aqui
       </h1>
-      <section className="grid grid-cols-6 gap-6 mt-16">
+      <section className="grid grid-cols-6 gap-6 mt-16 lg:grid-cols-3 lg:gap-10 sm:grid-cols-2 xs:grid-cols-1 ">
         {games.map((game) => {
           return (
             <GameBanner
