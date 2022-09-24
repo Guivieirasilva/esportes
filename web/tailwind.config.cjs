@@ -7,17 +7,20 @@ module.exports = {
   theme: {
     screens: {
       'xl': {'max': '1220px'},
-      // => @media (max-width: 1279px) { ... }
+      // => @media (max-width: 1220px) { ... }
 
       'lg': {'max': '1023px'},
       // => @media (max-width: 1023px) { ... }
 
       'md': {'max': '950px'},
-      // => @media (max-width: 767px) { ... }
+      // => @media (max-width: 950px) { ... }
 
       'sm': {'max': '720px'},
-      // => @media (max-width: 639px) { ... }
+      // => @media (max-width: 720px) { ... }
+      
       'xs': {'max': '500px'}
+      // => @media (max-width: 500px) { ... }
+
     },
     extend: {
       fontFamily:{
